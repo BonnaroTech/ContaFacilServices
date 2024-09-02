@@ -1,0 +1,12 @@
+version: "3.8"
+name: 'contafacil-services'
+services:
+  api-gateway:
+    image: lucasbfavaro/contafacil-services
+    container_name: api-gateway
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CRAWLER_SERVICE_URL=${CRAWLER_SERVICE_URL:http://crawler-service:8001}
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
